@@ -35,6 +35,14 @@ class RegisterScreen extends StatelessWidget
             HomeScreen(),
           );
         }
+
+        if(state is CounterStateError)
+        {
+          buildProgress(
+            context: context,
+            text: state.error.toString(),
+          );
+        }
       },
       builder: (context, state)
       {

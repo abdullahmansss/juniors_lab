@@ -52,6 +52,9 @@ class CounterCubit extends Cubit<CounterStates>
     ).then((value)
     {
       emit(CounterStateSuccess());
+    }).catchError((e)
+    {
+      emit(CounterStateError(e.toString()));
     });
   }
 }

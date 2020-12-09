@@ -122,8 +122,10 @@ void buildProgress({
             SizedBox(
               width: 20.0,
             ),
-            Text(
-              text,
+            Expanded(
+              child: Text(
+                text,
+              ),
             ),
           ],
         ),
