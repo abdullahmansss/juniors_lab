@@ -1,15 +1,28 @@
 import 'package:courses/modules/register/register_screen.dart';
 import 'package:courses/shared/components/components.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget
+{
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen>
+{
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
 
   @override
-  Widget build(BuildContext context) {
+  void initState()
+  {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context)
+  {
     return Scaffold(
       appBar: AppBar(
         title: Text(

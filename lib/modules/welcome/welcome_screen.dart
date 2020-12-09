@@ -1,12 +1,16 @@
 import 'package:courses/modules/login/login_screen.dart';
+import 'package:courses/modules/register/register_screen.dart';
 import 'package:courses/shared/colors/colors_common.dart';
 import 'package:courses/shared/components/components.dart';
+import 'package:courses/shared/network/remote/dio_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class WelcomeScreen extends StatelessWidget {
+class WelcomeScreen extends StatelessWidget
+{
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)
+  {
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
@@ -28,7 +32,25 @@ class WelcomeScreen extends StatelessWidget {
             Container(
               child: defaultButton(
                 text: 'register',
-                function: () {},
+                function: ()
+                {
+                  navigateTo(context, RegisterScreen());
+
+                  // DioHelper.postData(
+                  //   path: 'lms/api/v1/auth/signup-save',
+                  //   data:
+                  //   {
+                  //     'first_name':'Ahmed',
+                  //     'last_name':'Mansour',
+                  //     'email':'Ahmed@gmail.com',
+                  //     'password':'123456789',
+                  //     'city':'cairo',
+                  //   },
+                  // ).then((value)
+                  // {
+                  //   print(value.data);
+                  // });
+                },
               ),
             ),
             SizedBox(

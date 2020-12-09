@@ -101,3 +101,31 @@ void navigateTo(context, widget) => Navigator.push(
         builder: (context) => widget,
       ),
     );
+
+void navigateAndFinish(context, widget) => Navigator.pushAndRemoveUntil(
+    context,
+    MaterialPageRoute(
+      builder: (context) => widget,
+    ),
+    (Route<dynamic> route) => false);
+
+void buildProgress({
+  context,
+  text,
+}) =>
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        content: Row(
+          children: [
+            CircularProgressIndicator(),
+            SizedBox(
+              width: 20.0,
+            ),
+            Text(
+              text,
+            ),
+          ],
+        ),
+      ),
+    );
