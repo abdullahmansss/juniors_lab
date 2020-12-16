@@ -31,6 +31,9 @@ dependencies:
   flutter_bloc: ^6.1.1
   bloc: ^6.1.0
   dio: ^3.0.10
+  fluttertoast: ^7.1.5
+  shared_preferences: ^0.5.12+4
+  outline_material_icons: ^0.1.1
 
 dev_dependencies:
   flutter_test:

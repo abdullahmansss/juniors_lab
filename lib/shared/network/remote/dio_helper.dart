@@ -9,7 +9,8 @@ class DioHelper
     dio = Dio(
       BaseOptions(
         baseUrl: 'http://softagic.wwwnl1-ss19.a2hosted.com/',
-        headers: {
+        headers:
+        {
           'Accept':'application/json',
         },
       ),

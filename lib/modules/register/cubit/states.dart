@@ -1,14 +1,14 @@
-abstract class CounterStates {}
+abstract class RegisterStates {}
 
-class CounterStateInitial extends CounterStates {}
+class RegisterStateInitial extends RegisterStates {}
 
-class CounterStateLoading extends CounterStates {}
+class RegisterStateLoading extends RegisterStates {}
 
-class CounterStateSuccess extends CounterStates {}
+class RegisterStateSuccess extends RegisterStates {}
 
-class CounterStateError extends CounterStates
+class RegisterStateError extends RegisterStates
 {
   final error;
 
-  CounterStateError(this.error);
+  RegisterStateError(this.error);
 }
