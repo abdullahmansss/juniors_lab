@@ -26,7 +26,7 @@ class LoginCubit extends Cubit<LoginStates>
     {
       //print(value.toString());
       emit(LoginStateSuccess(value.data['access_token']));
-    }).catchError((e)
+    }).catchError((Error e)
     {
       print(e.toString());
       emit(LoginStateError(e.toString()));

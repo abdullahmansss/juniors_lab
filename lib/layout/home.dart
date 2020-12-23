@@ -9,8 +9,7 @@ import 'package:outline_material_icons/outline_material_icons.dart';
 class HomeScreen extends StatelessWidget
 {
   @override
-  Widget build(BuildContext context)
-  {
+  Widget build(BuildContext context) {
     return BlocConsumer<HomeCubit, HomeStates>(
       listener: (context, state) {},
       builder: (context, state)
@@ -20,14 +19,26 @@ class HomeScreen extends StatelessWidget
         return Scaffold(
           appBar: AppBar(
             title: Text(HomeCubit.get(context).titles[currentIndex]),
+            actions: [
+              IconButton(
+                icon: Icon(
+                  Icons.notifications_none,
+                ),
+                onPressed: () {},
+              ),
+            ],
           ),
           body: HomeCubit.get(context).widget[currentIndex],
           bottomNavigationBar: Container(
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(25.0,),
-                topRight: Radius.circular(25.0,),
+                topLeft: Radius.circular(
+                  25.0,
+                ),
+                topRight: Radius.circular(
+                  25.0,
+                ),
               ),
               boxShadow: [
                 BoxShadow(
@@ -40,8 +51,7 @@ class HomeScreen extends StatelessWidget
             child: BottomNavigationBar(
               backgroundColor: Colors.transparent,
               elevation: 0.0,
-              items:
-              [
+              items: [
                 BottomNavigationBarItem(
                   icon: Icon(
                     OMIcons.settings,
@@ -68,8 +78,7 @@ class HomeScreen extends StatelessWidget
                 ),
               ],
               type: BottomNavigationBarType.fixed,
-              onTap: (index)
-              {
+              onTap: (index) {
                 HomeCubit.get(context).changeIndex(index);
               },
               selectedItemColor: defaultColor,

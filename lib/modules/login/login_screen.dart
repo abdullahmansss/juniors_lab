@@ -1,3 +1,4 @@
+import 'package:courses/layout/cubit/cubit.dart';
 import 'package:courses/layout/home.dart';
 import 'package:courses/modules/login/cubit/cubit.dart';
 import 'package:courses/modules/login/cubit/states.dart';
@@ -49,6 +50,7 @@ class LoginScreen extends StatelessWidget
               if(value)
               {
                 //showToast(text: 'success save token', error: false,);
+                HomeCubit.get(context).changeIndex(0);
                 navigateAndFinish(context, HomeScreen());
               }
               else

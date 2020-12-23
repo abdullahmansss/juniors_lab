@@ -1,3 +1,4 @@
+import 'package:courses/layout/cubit/cubit.dart';
 import 'package:courses/layout/home.dart';
 import 'package:courses/modules/login/login_screen.dart';
 import 'package:courses/modules/register/cubit/cubit.dart';
@@ -28,6 +29,8 @@ class RegisterScreen extends StatelessWidget {
 
         if (state is RegisterStateSuccess)
         {
+          HomeCubit.get(context).changeIndex(0);
+
           navigateAndFinish(
             context,
             LoginScreen(
