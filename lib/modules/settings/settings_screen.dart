@@ -1,5 +1,6 @@
 import 'package:courses/modules/welcome/welcome_screen.dart';
 import 'package:courses/shared/components/components.dart';
+import 'package:courses/shared/network/local/shared_preferences.dart';
 import 'package:flutter/material.dart';
 
 class SettingsScreen extends StatelessWidget {

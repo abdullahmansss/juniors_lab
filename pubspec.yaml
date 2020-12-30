@@ -38,6 +38,7 @@ dependencies:
   expansion_card: ^0.1.0
   expansion_tile_card: ^1.1.0
   conditional_builder: ^1.0.2
+  get_it: ^5.0.1
 
 dev_dependencies:
   flutter_test:

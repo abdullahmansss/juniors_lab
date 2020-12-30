@@ -4,7 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginCubit extends Cubit<LoginStates>
 {
-  LoginCubit() : super(LoginStateInitial());
+  DioHelper dioHelper;
+
+  LoginCubit(this.dioHelper) : super(LoginStateInitial());
 
   static LoginCubit get(context) => BlocProvider.of(context);
 
@@ -12,7 +14,7 @@ class LoginCubit extends Cubit<LoginStates>
   {
     emit(LoginStateLoading());
 
-    DioHelper.postData(
+    dioHelper.postData(
       path: 'lms/oauth/token',
       data:
       {

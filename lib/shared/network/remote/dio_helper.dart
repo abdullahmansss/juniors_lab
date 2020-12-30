@@ -3,22 +3,17 @@ import 'package:dio/dio.dart';
 
 class DioHelper
 {
-  static Dio dio;
+  Dio dio = Dio(
+    BaseOptions(
+      baseUrl: 'http://softagic.wwwnl1-ss19.a2hosted.com/',
+      headers:
+      {
+        'Accept':'application/json',
+      },
+    ),
+  );
 
-  DioHelper()
-  {
-    dio = Dio(
-      BaseOptions(
-        baseUrl: 'http://softagic.wwwnl1-ss19.a2hosted.com/',
-        headers:
-        {
-          'Accept':'application/json',
-        },
-      ),
-    );
-  }
-
-  static Future<Response> postData({path, data, token}) async
+  Future<Response> postData({path, data, token}) async
   {
     if(token != null)
     {

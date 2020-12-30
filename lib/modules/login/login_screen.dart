@@ -4,6 +4,8 @@ import 'package:courses/modules/login/cubit/cubit.dart';
 import 'package:courses/modules/login/cubit/states.dart';
 import 'package:courses/modules/register/register_screen.dart';
 import 'package:courses/shared/components/components.dart';
+import 'package:courses/shared/di/di.dart';
+import 'package:courses/shared/network/local/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,7 +31,7 @@ class LoginScreen extends StatelessWidget
     }
 
     return BlocProvider(
-      create: (BuildContext context) => LoginCubit(),
+      create: (BuildContext context) => di<LoginCubit>(),
       child: BlocConsumer<LoginCubit, LoginStates>(
         listener: (context, state)
         {

@@ -4,8 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RegisterCubit extends Cubit<RegisterStates>
 {
+  DioHelper dioHelper;
+
   // create constructor to call super and pass initial state to super
-  RegisterCubit() : super(RegisterStateInitial());
+  RegisterCubit(this.dioHelper) : super(RegisterStateInitial());
 
   // create object from my cubit -counter cubit- to call it from any where
   static RegisterCubit get(context) => BlocProvider.of(context);
@@ -14,7 +16,7 @@ class RegisterCubit extends Cubit<RegisterStates>
   {
     emit(RegisterStateLoading());
 
-    DioHelper.postData(
+    dioHelper.postData(
       path: 'lms/api/v1/auth/signup-save',
       data:
       {

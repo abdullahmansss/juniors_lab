@@ -4,6 +4,8 @@ import 'package:courses/modules/register/cubit/cubit.dart';
 import 'package:courses/modules/welcome/welcome_screen.dart';
 import 'package:courses/shared/colors/colors_common.dart';
 import 'package:courses/shared/components/components.dart';
+import 'package:courses/shared/di/di.dart';
+import 'package:courses/shared/network/local/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -27,6 +29,8 @@ void main() async
       }
   });
 
+  await init();
+
   runApp(MyApp(widget));
 }
 
@@ -39,13 +43,11 @@ class MyApp extends StatelessWidget
   @override
   Widget build(BuildContext context)
   {
-    initApp();
-
     return MultiBlocProvider(
       providers:
       [
         BlocProvider(
-          create: (context) => RegisterCubit(),
+          create: (context) => di<RegisterCubit>(),
         ),
         BlocProvider(
           create: (context) => HomeCubit(),

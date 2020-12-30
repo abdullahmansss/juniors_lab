@@ -2,6 +2,7 @@ import 'package:conditional_builder/conditional_builder.dart';
 import 'package:courses/modules/courses/cubit/cubit.dart';
 import 'package:courses/modules/courses/cubit/states.dart';
 import 'package:courses/shared/components/components.dart';
+import 'package:courses/shared/di/di.dart';
 import 'package:courses/shared/styles/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,7 +13,7 @@ class CoursesScreen extends StatelessWidget
   Widget build(BuildContext context)
   {
     return BlocProvider(
-      create: (BuildContext context) => CoursesCubit()..getCourses(),
+      create: (BuildContext context) => di<CoursesCubit>()..getCourses(),
       child: BlocConsumer<CoursesCubit, CoursesStates>(
         listener: (context, state)
         {
