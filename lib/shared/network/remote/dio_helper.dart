@@ -1,3 +1,4 @@
+import 'package:courses/shared/components/components.dart';
 import 'package:dio/dio.dart';
 
 class DioHelper
@@ -17,11 +18,19 @@ class DioHelper
     );
   }
 
-  static Future<Response> postData({path, data}) async
+  static Future<Response> postData({path, data, token}) async
   {
+    if(token != null)
+    {
+      dio.options.headers =
+      {
+        'Authorization' : 'Bearer $token',
+      };
+    }
+
     return await dio.post(
       path,
-      data: data,
+      data: data??null,
     );
   }
 }

@@ -186,7 +186,7 @@ Widget defaultTextForm({
       ),
     );
 
-Widget buildCourseItem() => Padding(
+Widget buildCourseItem(course) => Padding(
   padding: EdgeInsets.symmetric(horizontal: 20.0,),
   child: Container(
     decoration: BoxDecoration(
@@ -208,8 +208,14 @@ Widget buildCourseItem() => Padding(
       title: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          CircleAvatar(
-            radius: 25.0,
+          Container(
+            width: 60.0,
+            height: 60.0,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10.0,),
+              color: defaultColor,
+              image: DecorationImage(image: NetworkImage(course['image'],)),
+            ),
           ),
           SizedBox(
             width: 15.0,
@@ -223,37 +229,37 @@ Widget buildCourseItem() => Padding(
                   children: [
                     Expanded(
                       child: Text(
-                        'Web Design',
+                        '${course['title']}',
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: black16Bold(),
                       ),
                     ),
-                    RatingBar.builder(
-                      initialRating: 4.5,
-                      minRating: 1,
-                      direction: Axis.horizontal,
-                      allowHalfRating: true,
-                      itemCount: 5,
-                      itemSize: 10.0,
-                      ignoreGestures: true,
-                      itemPadding: EdgeInsets.zero,
-                      itemBuilder: (context, _) => Icon(
-                        Icons.star,
-                        color: Colors.amber,
-                      ),
-                      onRatingUpdate: (rating)
-                      {
-                        print(rating);
-                      },
-                    )
+                    // RatingBar.builder(
+                    //   initialRating: 4.5,
+                    //   minRating: 1,
+                    //   direction: Axis.horizontal,
+                    //   allowHalfRating: true,
+                    //   itemCount: 5,
+                    //   itemSize: 10.0,
+                    //   ignoreGestures: true,
+                    //   itemPadding: EdgeInsets.zero,
+                    //   itemBuilder: (context, _) => Icon(
+                    //     Icons.star,
+                    //     color: Colors.amber,
+                    //   ),
+                    //   onRatingUpdate: (rating)
+                    //   {
+                    //     print(rating);
+                    //   },
+                    // ),
                   ],
                 ),
                 SizedBox(
                   height: 5.0,
                 ),
                 Text(
-                  'Become a web designer that looks grate on all devices.',
+                  '${course['description']}',
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: grey14(),

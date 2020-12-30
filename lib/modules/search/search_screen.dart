@@ -82,7 +82,7 @@ class SearchScreen extends StatelessWidget
           child: ListView.separated(
             physics: BouncingScrollPhysics(),
             padding: EdgeInsets.only(top: 20.0,),
-            itemBuilder: (context, index) => buildCourseItem(),
+            itemBuilder: (context, index) => Text('hello',),
             separatorBuilder: (context, index) => SizedBox(
               height: 20.0,
             ),
