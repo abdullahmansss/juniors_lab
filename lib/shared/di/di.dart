@@ -1,3 +1,4 @@
+import 'package:courses/models/courses_model.dart';
 import 'package:courses/modules/courses/cubit/cubit.dart';
 import 'package:courses/modules/login/cubit/cubit.dart';
 import 'package:courses/modules/register/cubit/cubit.dart';

@@ -1,5 +1,7 @@
+import 'package:courses/models/courses_model.dart';
 import 'package:courses/modules/courses/cubit/states.dart';
 import 'package:courses/shared/components/components.dart';
+import 'package:courses/shared/di/di.dart';
 import 'package:courses/shared/network/local/shared_preferences.dart';
 import 'package:courses/shared/network/remote/dio_helper.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,8 +13,6 @@ class CoursesCubit extends Cubit<CoursesStates>
   CoursesCubit(this.dioHelper) : super(CoursesStateInitial());
   static CoursesCubit get(context) => BlocProvider.of(context);
 
-  List courses = [];
-
   getCourses()
   {
     emit(CoursesStateLoading());
@@ -20,16 +20,19 @@ class CoursesCubit extends Cubit<CoursesStates>
     dioHelper.postData(
       path: 'lms/api/v1/courses',
       token: getToken(),
-    ).then((value)
+    ).then((value) async
     {
+
       emit(CoursesStateSuccess());
       print(value.data.toString());
 
-      courses = value.data['result']['data'] as List;
+      CoursesModel c = await CoursesModel.init(value.data.toString());
+      di.registerSingleton<CoursesModel>(c);
+      
     }).catchError((error)
     {
       emit(CoursesStateError(error));
-      print(error.toString());
+      print('----- error => ${error.toString()}');
     });
   }
 }

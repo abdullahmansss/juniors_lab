@@ -1,4 +1,5 @@
 import 'package:conditional_builder/conditional_builder.dart';
+import 'package:courses/models/courses_model.dart';
 import 'package:courses/modules/courses/cubit/cubit.dart';
 import 'package:courses/modules/courses/cubit/states.dart';
 import 'package:courses/shared/components/components.dart';
@@ -17,18 +18,24 @@ class CoursesScreen extends StatelessWidget
       child: BlocConsumer<CoursesCubit, CoursesStates>(
         listener: (context, state)
         {
+          if(state is CoursesStateSuccess)
+          {
+            print('----- status => ${CoursesModel.get.status}');
+          }
 
+          if(state is CoursesStateError)
+          {
+            print('----- status => ${CoursesModel.get.status}');
+          }
         },
         builder: (context, state)
         {
-          var courses = CoursesCubit.get(context).courses;
-
           return ConditionalBuilder(
             condition: state is! CoursesStateLoading,
             builder: (context) => ConditionalBuilder(
               condition: state is! CoursesStateError,
               builder: (context) => ConditionalBuilder(
-                condition: courses.length != 0,
+                condition: CoursesModel.get.results.courses.length != 0,
                 builder: (context) => Column(
                   children: [
                     // SizedBox(
@@ -56,11 +63,11 @@ class CoursesScreen extends StatelessWidget
                         padding: EdgeInsets.only(
                           top: 20.0,
                         ),
-                        itemBuilder: (context, index) => buildCourseItem(courses[index]),
+                        itemBuilder: (context, index) => buildCourseItem(CoursesModel.get.results.courses[index]),
                         separatorBuilder: (context, index) => SizedBox(
                           height: 20.0,
                         ),
-                        itemCount: courses.length,
+                        itemCount: CoursesModel.get.results.courses.length,
                       ),
                     ),
                   ],

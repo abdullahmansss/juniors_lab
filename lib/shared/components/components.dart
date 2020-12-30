@@ -1,5 +1,7 @@
+import 'package:courses/models/courses_model.dart';
 import 'package:courses/modules/test/test_screen.dart';
 import 'package:courses/shared/colors/colors_common.dart';
+import 'package:courses/shared/di/di.dart';
 import 'package:courses/shared/network/remote/dio_helper.dart';
 import 'package:courses/shared/styles/style.dart';
 import 'package:expansion_tile_card/expansion_tile_card.dart';
@@ -173,7 +175,9 @@ Widget defaultTextForm({
       ),
     );
 
-Widget buildCourseItem(course) => Padding(
+Widget buildCourseItem(CourseDetails course)
+{
+  return Padding(
   padding: EdgeInsets.symmetric(horizontal: 20.0,),
   child: Container(
     decoration: BoxDecoration(
@@ -201,7 +205,7 @@ Widget buildCourseItem(course) => Padding(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.0,),
               color: defaultColor,
-              image: DecorationImage(image: NetworkImage(course['image'],)),
+              image: DecorationImage(image: NetworkImage(course.image,)),
             ),
           ),
           SizedBox(
@@ -216,7 +220,7 @@ Widget buildCourseItem(course) => Padding(
                   children: [
                     Expanded(
                       child: Text(
-                        '${course['title']}',
+                        '${course.title}',
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: black16Bold(),
@@ -246,7 +250,7 @@ Widget buildCourseItem(course) => Padding(
                   height: 5.0,
                 ),
                 Text(
-                  '${course['description']}',
+                  '${course.description}',
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: grey14(),
@@ -266,6 +270,7 @@ Widget buildCourseItem(course) => Padding(
     ),
   ),
 );
+}
 
 Widget buildSearchItem(CategoryModel model, context) => GestureDetector(
   onTap: () {
