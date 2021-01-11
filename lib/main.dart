@@ -1,15 +1,19 @@
 import 'package:courses/layout/cubit/cubit.dart';
 import 'package:courses/layout/home.dart';
+import 'package:courses/modules/courses/cubit/cubit.dart';
 import 'package:courses/modules/register/cubit/cubit.dart';
 import 'package:courses/modules/welcome/welcome_screen.dart';
 import 'package:courses/shared/colors/colors_common.dart';
 import 'package:courses/shared/components/components.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async
 {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp();
 
   var widget;
 
@@ -46,6 +50,9 @@ class MyApp extends StatelessWidget
       [
         BlocProvider(
           create: (context) => RegisterCubit(),
+        ),
+        BlocProvider(
+          create: (context) => CoursesCubit()..getCourses(),
         ),
         BlocProvider(
           create: (context) => HomeCubit(),

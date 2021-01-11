@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "564281932933",
+    "project_id": "juniors-65432",
+    "storage_bucket": "juniors-65432.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:564281932933:android:fd45d0389e96e125eabdec",
+        "android_client_info": {
+          "package_name": "com.softagicourses.courses"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "564281932933-k8nuuc8qd7tnu15oejfo1s9fpnhjake7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.softagicourses.courses",
+            "certificate_hash": "96c598380d7aae808899d6dd072b07d5601b6656"
+          }
+        },
+        {
+          "client_id": "564281932933-gdher7q8lc3mtbcqc1gndf5v8tobj68c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAzN9a5-XY_htdx4R5qNR0gs7K5iyUTi6g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "564281932933-gdher7q8lc3mtbcqc1gndf5v8tobj68c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

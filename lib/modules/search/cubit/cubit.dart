@@ -1,48 +1,53 @@
-import 'package:courses/modules/courses/cubit/states.dart';
+import 'package:courses/modules/search/cubit/states.dart';
 import 'package:courses/shared/components/components.dart';
 import 'package:courses/shared/network/remote/dio_helper.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CoursesCubit extends Cubit<CoursesStates>
+class SearchCubit extends Cubit<SearchStates>
 {
-  CoursesCubit() : super(CoursesStateInitial());
-  static CoursesCubit get(context) => BlocProvider.of(context);
+  SearchCubit() : super(SearchStateInitial());
+  static SearchCubit get(context) => BlocProvider.of(context);
 
   List courses = [];
 
   int totalPages = 0;
-  int currentPage = 1;
+  int currentPage = 2;
 
-  getCourses()
+  getSearch(String q)
   {
-    emit(CoursesStateLoading());
+    emit(SearchStateLoading());
 
     DioHelper.postData(
-      path: 'lms/api/v1/courses',
+      path: 'lms/api/v1/search',
+      data:
+      {
+        'q': q,
+        'type':1,
+      },
       query:
       {
-        'page': currentPage,
+        'page': 1,
       },
       token: getToken(),
     ).then((value)
     {
-      emit(CoursesStateSuccess());
+      emit(SearchStateSuccess());
       print(value.data.toString());
 
       courses = value.data['result']['data'] as List;
 
-      currentPage ++;
+      //currentPage ++;
       totalPages = value.data['result']['last_page'];
     }).catchError((error)
     {
-      emit(CoursesStateError(error));
+      emit(SearchStateError(error));
       print(error.toString());
     });
   }
 
-  getMoreCourses()
+  getMoreSearch()
   {
-    emit(CoursesStateLoadingMore());
+    emit(SearchStateLoadingMore());
 
     DioHelper.postData(
       path: 'lms/api/v1/courses',
@@ -53,7 +58,7 @@ class CoursesCubit extends Cubit<CoursesStates>
       token: getToken(),
     ).then((value)
     {
-      emit(CoursesStateSuccess());
+      emit(SearchStateSuccess());
       print(value.data.toString());
 
       courses.addAll(value.data['result']['data'] as List);
@@ -61,7 +66,7 @@ class CoursesCubit extends Cubit<CoursesStates>
       currentPage ++;
     }).catchError((error)
     {
-      emit(CoursesStateError(error));
+      emit(SearchStateError(error));
       print(error.toString());
     });
   }

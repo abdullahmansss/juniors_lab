@@ -18,7 +18,7 @@ class DioHelper
     );
   }
 
-  static Future<Response> postData({path, data, token}) async
+  static Future<Response> postData({path, data, token, query}) async
   {
     if(token != null)
     {
@@ -31,6 +31,7 @@ class DioHelper
     return await dio.post(
       path,
       data: data??null,
+      queryParameters: query??null,
     );
   }
 }

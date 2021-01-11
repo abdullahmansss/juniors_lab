@@ -3,11 +3,21 @@ import 'package:courses/modules/register/register_screen.dart';
 import 'package:courses/shared/colors/colors_common.dart';
 import 'package:courses/shared/components/components.dart';
 import 'package:courses/shared/network/remote/dio_helper.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class WelcomeScreen extends StatelessWidget
 {
+  GoogleSignIn googleSignIn = GoogleSignIn(
+    scopes:
+    [
+      'email',
+      'https://www.googleapis.com/auth/contacts.readonly',
+    ],
+  );
+
   @override
   Widget build(BuildContext context)
   {
@@ -76,14 +86,20 @@ class WelcomeScreen extends StatelessWidget
                 SizedBox(
                   width: 15.0,
                 ),
-                CircleAvatar(
-                  radius: 20.0,
-                  backgroundColor: defaultColor,
-                  child: Image(
-                    image: AssetImage('assets/images/google.png'),
-                    height: 20.0,
-                    width: 20.0,
-                    color: Colors.white,
+                GestureDetector(
+                  onTap: ()
+                  {
+                    handleSignIn();
+                  },
+                  child: CircleAvatar(
+                    radius: 20.0,
+                    backgroundColor: defaultColor,
+                    child: Image(
+                      image: AssetImage('assets/images/google.png'),
+                      height: 20.0,
+                      width: 20.0,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ],
@@ -92,5 +108,34 @@ class WelcomeScreen extends StatelessWidget
         ),
       ),
     );
+  }
+
+  Future<void> handleSignIn() async
+  {
+    await googleSignIn.signIn().then((value) async
+    {
+      print(value.email);
+      print(value.displayName);
+      print(value.photoUrl);
+
+      GoogleSignInAuthentication googleSignInAuthentication = await value.authentication;
+
+      AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleSignInAuthentication.accessToken,
+        idToken: googleSignInAuthentication.idToken,
+      );
+
+      await FirebaseAuth.instance
+          .signInWithCredential(credential)
+          .then((value) {
+        print(value.user.uid);
+      }).catchError((e)
+      {
+        print(e.toString());
+      });
+
+    }).catchError((e){
+      print(e.toString());
+    });
   }
 }

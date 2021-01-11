@@ -1,3 +1,4 @@
+import 'package:courses/modules/phone/phone_screen.dart';
 import 'package:courses/modules/welcome/welcome_screen.dart';
 import 'package:courses/shared/components/components.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,13 @@ class SettingsScreen extends StatelessWidget {
         buildSettingItem(
           function: () {},
           title: 'Account Settings',
+        ),
+        buildSettingItem(
+          function: ()
+          {
+            navigateTo(context, PhoneScreen(),);
+          },
+          title: 'Phone Authentication',
         ),
         buildSettingItem(
           function: () {},
