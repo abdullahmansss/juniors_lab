@@ -24,7 +24,10 @@ class HomeScreen extends StatelessWidget
                 icon: Icon(
                   Icons.notifications_none,
                 ),
-                onPressed: () {},
+                onPressed: ()
+                {
+                  HomeCubit.get(context).sendNotification();
+                },
               ),
             ],
           ),

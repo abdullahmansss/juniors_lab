@@ -6,6 +6,7 @@ import 'package:courses/modules/welcome/welcome_screen.dart';
 import 'package:courses/shared/colors/colors_common.dart';
 import 'package:courses/shared/components/components.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,6 +17,8 @@ void main() async
   await Firebase.initializeApp();
 
   var widget;
+
+  FirebaseMessaging().subscribeToTopic('juniors');
 
   await initPref().then((value)
   {
@@ -44,6 +47,7 @@ class MyApp extends StatelessWidget
   Widget build(BuildContext context)
   {
     initApp();
+    setFirebaseMessaging();
 
     return MultiBlocProvider(
       providers:
@@ -72,4 +76,16 @@ class MyApp extends StatelessWidget
       ),
     );
   }
+}
+
+setFirebaseMessaging()
+{
+  FirebaseMessaging().configure(
+    onMessage: (msg)
+    {
+      print('notification received');
+      print(msg.toString());
+      return null;
+    }
+  );
 }
